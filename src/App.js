@@ -1,7 +1,8 @@
+import Post from "./Post";
 
 function App() {
   return (
-    <div>app</div>
+    <Post></Post>
   );
 }
 
