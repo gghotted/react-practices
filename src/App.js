@@ -3,25 +3,35 @@ import {
   Routes,
   Route,
   useNavigate,
+  useLocation,
+  Link,
 } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 
 function One() {
-  const navigate = useNavigate();
+  const location = useLocation();
   return (
-    <Button
-      onClick={() => {navigate('/two')}}
+    <Box
+      component={Link}
+      to='/two'
+      state={{from: location.pathname + location.search}}
     >
-      Two로 가기
-    </Button>
+      two로 가기
+    </Box>
   )
 }
 
 function Two() {
+  const navigate = useNavigate();
+  const location = useLocation();
   return (
-    <div>
-      two
-    </div>
+    <Button
+      onClick={() => {
+        location.state ? navigate(-1) : navigate('/');
+      }}
+    >
+      뒤로 가기
+    </Button>
   )
 }
 
