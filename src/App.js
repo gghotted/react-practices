@@ -3,14 +3,18 @@ import {
   Routes,
   Route,
   useNavigate,
+  useLocation,
 } from 'react-router-dom';
 import { Button } from '@mui/material';
 
 function One() {
   const navigate = useNavigate();
+  const location = useLocation();
   return (
     <Button
-      onClick={() => {navigate('/two')}}
+      onClick={() => {
+        navigate('/two', {state: {from: location.pathname + location.search}});
+      }}
     >
       Two로 가기
     </Button>
@@ -18,10 +22,16 @@ function One() {
 }
 
 function Two() {
+  const navigate = useNavigate();
+  const location = useLocation();
   return (
-    <div>
-      two
-    </div>
+    <Button
+      onClick={() => {
+        location.state ? navigate(-1) : navigate('/');
+      }}
+    >
+      뒤로 가기
+    </Button>
   )
 }
 
