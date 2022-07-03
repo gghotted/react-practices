@@ -27,7 +27,7 @@ function Two() {
   return (
     <Button
       onClick={() => {
-        location.state ? navigate(-1) : navigate('/');
+        location.state ? navigate(location.state.from) : navigate('/');
       }}
     >
       뒤로 가기
